@@ -13,7 +13,7 @@ all_hourly_precipitation = []
 all_hourly_wind_speed_100m = []
 date = []
 
-
+#All the undefined Airport were dropped
 state_location = [
 ('FLA', 1.5894336, -75.56474579631328),
 ('RIW', 43.064393249999995, -108.45899672083172),
