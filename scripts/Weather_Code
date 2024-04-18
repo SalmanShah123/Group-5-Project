@@ -10,7 +10,6 @@ def airline_dataframe(start, end, lst):
     all_hourly_relative_humidity_2m = []
     all_hourly_precipitation = []
     all_hourly_wind_speed_100m = []
-    date = []
 
     for airline, latitude, longitude in lst:
         start_date = start
@@ -26,7 +25,7 @@ def airline_dataframe(start, end, lst):
             "latitude": latitude,
             "longitude": longitude,
             "start_date": start_date,
-            "end_date": end_date, 
+            "end_date": end_date,
             "hourly": ["temperature_2m", "relative_humidity_2m", "precipitation", "wind_speed_100m"]
         }
 
@@ -43,18 +42,37 @@ def airline_dataframe(start, end, lst):
         all_hourly_precipitation.append(hourly.Variables(2).ValuesAsNumpy())
         all_hourly_wind_speed_100m.append(hourly.Variables(3).ValuesAsNumpy())
 
+
     # Create DataFrame
     df = pd.DataFrame({
         "hourly_temp_2m": all_hourly_temperature_2m,
         "hourly_relative_humidity": all_hourly_relative_humidity_2m,
         "hourly_precipitation": all_hourly_precipitation,
         "wind_speed_100": all_hourly_wind_speed_100m,
-        "Airline_code": [airline for airline, _, _ in lst] 
+        "Airline_code": [airline for airline, _, _ in lst]
     })
+    return df
 
-    # Save DataFrame to CSV
-    path = F"/Users/alanlin/Weather_Data/Airline_code{start_date}.csv"  #Change to your own file path
-    df.to_csv(path, index=False)
+def weather_cleaning(path):
+    data = path
+    columns = ["hourly_temp_2m", "hourly_relative_humidity", "hourly_precipitation", "wind_speed_100", "Airline_code"]
+
+    cleaned_data = {column: [] for column in columns}
+
+    for index, row in data.iterrows():
+        for column in columns[:-1]:  # Exclude the last column (Airline_code)
+            temp_values = str(row[column]).strip().split()
+            updated_temp_values = [item.strip("[]") for item in temp_values if item.strip("[]")] #ensuring non-empty string are in final output
+
+            for item in updated_temp_values:
+                cleaned_data[column].append(item)
+
+        # For the last column (Airline_code), repeat the same value 24 times and add it to the list
+        airline_code = str(row["Airline_code"]).strip()
+        cleaned_data["Airline_code"].extend([airline_code] * 24)
+
+    clean_df = pd.DataFrame(cleaned_data)
+    return clean_df
 
 
 state_location = [
@@ -505,18 +523,16 @@ state_location = [
 ('BMI', 40.4733557, -88.91480264613926)
 ]
 
+for i in range(27,32):
+    start_date = datetime(2023, 8, i)
+    end_date = datetime(2023, 8, i)
 
-start_date = datetime(2023,7,1)
-end_date = datetime(2023,7,2)
+    while start_date <= end_date:
+        formatted_date = start_date.strftime("%Y-%m-%d")
+        df = airline_dataframe(formatted_date, formatted_date, state_location)
 
-#note: there is a limitattion on how much data you can request per limit
-while start_date <= end_date:
-    #reformating date and time to match openmeteo_requests
-    formatted_start_date = start_date.strftime("%Y-%m-%d")
-    formatted_end_date = end_date.strftime("%Y-%m-%d")
-
-    #running the function within the while loop to get data 
-    airline_dataframe(formatted_start_date, formatted_end_date, state_location)
-
-    #incrementing date by 1 until start_date = end_date 
-    start_date += timedelta(days=1)
+        cleaned_data = weather_cleaning(df)
+        cleaned_data.to_csv(f"/Users/alanlin/Weather_Data/{formatted_date}.csv", index=False)
+        
+        start_date += timedelta(days=1)
+    
