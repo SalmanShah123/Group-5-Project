@@ -10,6 +10,11 @@ The analysis covers the period from July 1st, 2023, to December 31st, 2023.
   
 - Weather Data: https://open-meteo.com/en/docs/historical-weather-api#hourly=temperature_2m,relative_humidity_2m,dew_point_2m,precipitation,wind_speed_10m,wind_speed_100m
 
+## Data Dictionary
+
+- TSA Throughput Data: https://docs.google.com/spreadsheets/d/1QokKQZsmRzgz3GfFQqfg54AXHoRow6SrZoRRQ-y1YTY/edit#gid=0
+- Weather Data: https://docs.google.com/spreadsheets/d/1AK96o1TNmjOfuRt5v1gA9jys6_iF784JiaJwdYP6830/edit#gid=0
+
  ## Data Model
 
  ## PowerBI Link
