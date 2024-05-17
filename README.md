@@ -17,6 +17,7 @@ The analysis covers the period from July 1st, 2023, to December 31st, 2023.
 - Lookup Table: https://docs.google.com/spreadsheets/d/1udNBJYZfK2IuScMu1fKRmo8KECaUoh0wrIZVg1kfA48/edit#gid=0
 
  ## Data Model
+![image](https://github.com/beriregonc/Group-5-Project/assets/85110734/53074842-b766-4b8f-bbc4-68b378a09264)
 
  ## PowerBI Link
 
