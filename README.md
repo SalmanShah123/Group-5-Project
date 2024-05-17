@@ -14,6 +14,7 @@ The analysis covers the period from July 1st, 2023, to December 31st, 2023.
 
 - TSA Throughput Data: https://docs.google.com/spreadsheets/d/1QokKQZsmRzgz3GfFQqfg54AXHoRow6SrZoRRQ-y1YTY/edit#gid=0
 - Weather Data: https://docs.google.com/spreadsheets/d/1AK96o1TNmjOfuRt5v1gA9jys6_iF784JiaJwdYP6830/edit#gid=0
+- Lookup Table: https://docs.google.com/spreadsheets/d/1udNBJYZfK2IuScMu1fKRmo8KECaUoh0wrIZVg1kfA48/edit#gid=0
 
  ## Data Model
 
