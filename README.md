@@ -22,5 +22,3 @@ The analysis covers the period from July 1st, 2023, to December 31st, 2023.
  ## PowerBI Link
 
 https://app.powerbi.com/links/ykbPYMZjvH?ctid=6f60f0b3-5f06-4e09-9715-989dba8cc7d8&pbi_source=linkShare
-
- ## Conclusion
